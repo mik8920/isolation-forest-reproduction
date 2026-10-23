@@ -81,3 +81,17 @@ anomalies (as in the paper) and the 5 attributes with missing values are dropped
 
 Not included: **Mulcross** (synthetic data from a generator that is not publicly available in its original
 form). ORCA and Random Forests from Table 3 are also not reproduced.
+
+## Reused code, data and licenses
+
+No external code was copied into this repository. The two scripts were written for this project
+(with the help of an AI assistant, Claude; see the report's AI disclosure). They reuse the following
+software and data, all under licenses that allow use, modification and redistribution:
+
+| What | How it is used | License |
+|---|---|---|
+| [scikit-learn](https://scikit-learn.org) (`IsolationForest`, `LocalOutlierFactor`, `roc_auc_score`) | Imported as a library, unmodified | BSD-3-Clause |
+| [ADBench](https://github.com/Minqi824/ADBench) datasets (ODDS versions) | Downloaded at run time by `download_data.py`; not included in this repository | BSD-2-Clause |
+| [UCI Arrhythmia](https://archive.ics.uci.edu/dataset/5/arrhythmia) dataset | Downloaded at run time by `download_data.py`; not included in this repository | CC BY 4.0 |
+
+The code in this repository is released under the MIT License (see `LICENSE`).
