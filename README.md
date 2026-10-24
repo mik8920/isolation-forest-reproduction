@@ -18,29 +18,66 @@ Assignment 2, Data Wrangling (INFOMDW), Utrecht University.
 
 ## How to run
 
-Tested with Python 3.14 on Windows 11.
+Tested with Python 3.14 on Windows 11. Run the commands **one block at a time**, only the block for
+your system.
 
-```bash
+**1. Download the code** (any system):
+
+```
+git clone https://github.com/mik8920/isolation-forest-reproduction
+cd isolation-forest-reproduction
+```
+
+**2a. Windows (PowerShell):**
+
+```
 python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS / Linux:
-source .venv/bin/activate
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe download_data.py
+.\.venv\Scripts\python.exe run_experiment.py --with-lof
+```
 
+(This calls the environment's Python directly, so you do not need to "activate" it. Activating with
+`.venv\Scripts\activate` may fail in PowerShell with "running scripts is disabled on this system".)
+
+**2b. macOS / Linux (Terminal):**
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python download_data.py
 python run_experiment.py --with-lof
 ```
 
-The full run (11 datasets × 10 repetitions + LOF) takes about 2 minutes on a laptop.
+The full run (11 datasets × 10 repetitions + LOF) takes about 2 minutes on a laptop. The results are
+written to `results/results.csv` and `results/results.md`.
 
-Other options:
+Other options (on Windows, replace `python` with `.\.venv\Scripts\python.exe`):
 
-```bash
+```
 python run_experiment.py --runs 3 --datasets Pima Breastw   # quick test
 python run_experiment.py --trees 100 --psi 256               # change parameters
 python run_experiment.py --help
 ```
+
+### Running on Google Colab (no installation needed)
+
+Open a new notebook at [colab.research.google.com](https://colab.research.google.com), choose a **CPU**
+runtime, paste the following into a cell and run it:
+
+```
+!git clone https://github.com/mik8920/isolation-forest-reproduction
+%cd isolation-forest-reproduction
+!pip install -q scikit-learn tabulate
+!python download_data.py
+!python run_experiment.py --with-lof
+```
+
+Colab installs its own (newer) versions of Python and scikit-learn instead of the pinned ones in
+`requirements.txt`. In a test run with Python 3.13, all AUC values were identical to the reported
+results; only the run times differ. Colab is also an option if your computer blocks scikit-learn's
+compiled files (for example Windows Smart App Control).
 
 ## Parameters
 
